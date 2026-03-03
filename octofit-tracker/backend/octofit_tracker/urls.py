@@ -32,8 +32,8 @@ router.register(r'workouts', WorkoutViewSet)
 
 @api_view(['GET'])
 def api_root(request, format=None):
-    codespace_name = os.environ.get('CODESPACE_NAME', '')
-    base_url = f"https://{codespace_name}-8000.app.github.dev/api" if codespace_name else request.build_absolute_uri('/api')[:-1]
+    codespace_name = os.environ.get('CODESPACE_NAME')
+    base_url = f"https://{codespace_name}-8000.app.github.dev/api" if codespace_name else "http://localhost:8000/api"
     return Response({
         'users': f"{base_url}/users/",
         'teams': f"{base_url}/teams/",
@@ -44,6 +44,7 @@ def api_root(request, format=None):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', api_root, name='root'),
+    path('api/', api_root, name='api-root'),
     path('api/', include(router.urls)),
-    path('', api_root, name='api-root'),
 ]
