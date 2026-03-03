@@ -1,21 +1,27 @@
 .app-shell {
   min-height: 100vh;
-  background: linear-gradient(180deg, #f4f8ff 0%, #e9f3ff 100%);
+  background: radial-gradient(circle at top left, #e0f2fe 0%, #f4f8ff 40%, #e9f3ff 100%);
   color: #1f2a44;
 }
 
 .octofit-nav {
   background: linear-gradient(90deg, #1f3a8a 0%, #2563eb 100%);
   border-bottom: 4px solid #38bdf8;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.octofit-nav .navbar-brand {
+  margin-right: auto;
 }
 
 .brand-logo {
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #ffffff;
-  padding: 4px;
+  padding: 5px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
 }
 
 .brand-text {
@@ -27,11 +33,14 @@
 .octofit-nav .nav-link {
   color: #dbeafe;
   font-weight: 600;
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
 }
 
 .octofit-nav .nav-link:hover,
 .octofit-nav .nav-link.active {
   color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.14);
 }
 
 .page-title,
@@ -40,33 +49,41 @@
   color: #1e40af;
 }
 
+.section-title {
+  letter-spacing: 0.01em;
+}
+
 .page-subtitle {
   color: #334155;
 }
 
-.overview-link {
+.overview-link,
+.link-primary {
   color: #0f766e;
   font-weight: 600;
   text-decoration: none;
 }
 
-.overview-link:hover {
+.overview-link:hover,
+.link-primary:hover {
   color: #115e59;
   text-decoration: underline;
 }
 
 .octofit-card {
-  border: 1px solid #bfdbfe;
-  box-shadow: 0 10px 24px rgba(30, 64, 175, 0.12);
+  border: 1px solid #93c5fd;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow: 0 10px 24px rgba(30, 64, 175, 0.14);
 }
 
 .octofit-table {
-  border-color: #93c5fd;
+  border-color: #60a5fa;
   background-color: #ffffff;
 }
 
 .octofit-table thead th {
-  background-color: #dbeafe;
+  background: linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%);
   color: #1e3a8a;
 }
 
@@ -74,9 +91,14 @@
   background-color: #f8fbff;
 }
 
+.octofit-table tbody tr:hover {
+  background-color: #eef6ff;
+}
+
 .btn-primary {
   background-color: #2563eb;
   border-color: #1d4ed8;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
 }
 
 .btn-primary:hover {
@@ -87,6 +109,7 @@
 .btn-success {
   background-color: #0f766e;
   border-color: #0f766e;
+  box-shadow: 0 6px 14px rgba(15, 118, 110, 0.22);
 }
 
 .btn-success:hover {
@@ -94,8 +117,23 @@
   border-color: #0d5d57;
 }
 
+.btn-info {
+  background-color: #0284c7;
+  border-color: #0284c7;
+}
+
+.btn-outline-secondary {
+  border-color: #64748b;
+  color: #334155;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #64748b;
+  color: #ffffff;
+}
+
 .octofit-modal .modal-header {
-  background-color: #eff6ff;
+  background: linear-gradient(90deg, #eff6ff 0%, #e0ecff 100%);
   color: #1e3a8a;
 }
 

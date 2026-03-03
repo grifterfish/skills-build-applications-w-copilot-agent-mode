@@ -1,149 +1,111 @@
 import { useState } from 'react';
+import { NavLink, Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
+import Activities from './components/Activities';
+import Leaderboard from './components/Leaderboard';
+import Teams from './components/Teams';
+import Users from './components/Users';
+import Workouts from './components/Workouts';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+  const [selectedRoute, setSelectedRoute] = useState('/users');
+  const navigate = useNavigate();
+  const apiRootUrl = process.env.REACT_APP_CODESPACE_NAME
+    ? `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/`
+    : 'http://localhost:8000/api/';
 
-  const activityRows = [
-    { id: 1, activity: 'Morning Run', duration: '35 min', calories: 320 },
-    { id: 2, activity: 'Cycling', duration: '50 min', calories: 410 },
-    { id: 3, activity: 'Strength Session', duration: '45 min', calories: 365 },
-  ];
+  const handleNavigate = (event) => {
+    event.preventDefault();
+    navigate(selectedRoute);
+  };
 
   return (
     <div className="app-shell">
       <nav className="navbar navbar-expand-lg octofit-nav mb-4">
         <div className="container">
-          <a className="navbar-brand d-flex align-items-center" href="#overview">
+          <NavLink className="navbar-brand d-flex align-items-center" to="/users">
             <img
               src={`${process.env.PUBLIC_URL}/octofitapp-small.png`}
               alt="OctoFit"
               className="brand-logo me-2"
             />
             <span className="brand-text">OctoFit Tracker</span>
-          </a>
+          </NavLink>
           <div className="navbar-nav ms-auto">
-            <a className="nav-link active" href="#overview">
-              Dashboard
-            </a>
-            <a className="nav-link" href="#log">
-              Activity Log
-            </a>
-            <a className="nav-link" href="#leaderboard">
-              Leaderboard
-            </a>
+            <NavLink className="nav-link" to="/users">Users</NavLink>
+            <NavLink className="nav-link" to="/teams">Teams</NavLink>
+            <NavLink className="nav-link" to="/activities">Activities</NavLink>
+            <NavLink className="nav-link" to="/leaderboard">Leaderboard</NavLink>
+            <NavLink className="nav-link" to="/workouts">Workouts</NavLink>
           </div>
         </div>
       </nav>
 
       <main className="container pb-4">
-        <section id="overview" className="mb-4">
-          <h1 className="display-6 fw-bold page-title">Your OctoFit Overview</h1>
-          <p className="lead page-subtitle mb-0">
-            Track workouts, monitor progress, and challenge your team.
-          </p>
-          <a href="#log" className="overview-link">
-            Go to activity log
-          </a>
-        </section>
-
-        <section className="row g-4 mb-4">
-          <div className="col-md-6">
-            <div className="card h-100 octofit-card">
-              <div className="card-body">
-                <h2 className="h4 card-title">Weekly Goal</h2>
-                <p className="card-text mb-3">Complete 5 workouts this week.</p>
-                <button className="btn btn-primary" onClick={() => setShowModal(true)}>
-                  View Goal Details
-                </button>
+        <section className="mb-4">
+          <div className="card octofit-card">
+            <div className="card-body">
+              <div className="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <h1 className="h3 page-title mb-0">OctoFit Dashboard</h1>
+                <a className="link-primary fw-semibold" href={apiRootUrl} target="_blank" rel="noreferrer">
+                  Open REST API Root
+                </a>
               </div>
-            </div>
-          </div>
-          <div className="col-md-6" id="log">
-            <div className="card h-100 octofit-card">
-              <div className="card-body">
-                <h2 className="h4 card-title">Log New Activity</h2>
-                <form className="row g-2">
-                  <div className="col-12">
-                    <label className="form-label" htmlFor="activityName">
-                      Activity
-                    </label>
-                    <input
-                      id="activityName"
-                      type="text"
-                      className="form-control"
-                      placeholder="e.g. HIIT"
-                    />
-                  </div>
-                  <div className="col-6">
-                    <label className="form-label" htmlFor="duration">
-                      Duration
-                    </label>
-                    <input id="duration" type="text" className="form-control" placeholder="40 min" />
-                  </div>
-                  <div className="col-6">
-                    <label className="form-label" htmlFor="calories">
-                      Calories
-                    </label>
-                    <input id="calories" type="number" className="form-control" placeholder="350" />
-                  </div>
-                  <div className="col-12">
-                    <button type="button" className="btn btn-success w-100">
-                      Save Activity
-                    </button>
-                  </div>
-                </form>
-              </div>
+              <p className="page-subtitle mb-3">
+                Navigate between Users, Teams, Activities, Leaderboard, and Workouts from one consistent view.
+              </p>
+              <form className="row g-2 align-items-end" onSubmit={handleNavigate}>
+                <div className="col-md-6">
+                  <label className="form-label fw-semibold" htmlFor="routeSelect">Go to section</label>
+                  <select
+                    id="routeSelect"
+                    className="form-select"
+                    value={selectedRoute}
+                    onChange={(event) => setSelectedRoute(event.target.value)}
+                  >
+                    <option value="/users">Users</option>
+                    <option value="/teams">Teams</option>
+                    <option value="/activities">Activities</option>
+                    <option value="/leaderboard">Leaderboard</option>
+                    <option value="/workouts">Workouts</option>
+                  </select>
+                </div>
+                <div className="col-md-auto">
+                  <button type="submit" className="btn btn-primary">Go</button>
+                </div>
+                <div className="col-md-auto">
+                  <button type="button" className="btn btn-success" onClick={() => setShowModal(true)}>
+                    App Info
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </section>
 
-        <section id="leaderboard" className="mb-3">
-          <h2 className="h3 section-title">Activity Leaderboard</h2>
-          <div className="table-responsive">
-            <table className="table table-striped table-hover table-bordered align-middle octofit-table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Activity</th>
-                  <th scope="col">Duration</th>
-                  <th scope="col">Calories</th>
-                </tr>
-              </thead>
-              <tbody>
-                {activityRows.map((row) => (
-                  <tr key={row.id}>
-                    <td>{row.id}</td>
-                    <td>{row.activity}</td>
-                    <td>{row.duration}</td>
-                    <td>{row.calories}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        <Routes>
+          <Route path="/" element={<Navigate to="/users" replace />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/teams" element={<Teams />} />
+          <Route path="/activities" element={<Activities />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/workouts" element={<Workouts />} />
+        </Routes>
       </main>
 
       <div className={`modal fade ${showModal ? 'show d-block' : ''}`} tabIndex="-1" aria-hidden={!showModal}>
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content octofit-modal">
             <div className="modal-header">
-              <h5 className="modal-title">Weekly Goal Details</h5>
-              <button
-                type="button"
-                className="btn-close"
-                aria-label="Close"
-                onClick={() => setShowModal(false)}
-              ></button>
+              <h5 className="modal-title">OctoFit Frontend</h5>
+              <button type="button" className="btn-close" aria-label="Close" onClick={() => setShowModal(false)}></button>
             </div>
             <div className="modal-body">
-              <p className="mb-0">You are 3 of 5 workouts complete. Keep up the momentum.</p>
+              <p className="mb-0">All sections use consistent Bootstrap cards, forms, tables, links, and API-driven data rendering.</p>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>
-                Close
-              </button>
+              <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Close</button>
             </div>
           </div>
         </div>
