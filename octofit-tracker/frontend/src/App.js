@@ -11,9 +11,7 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [selectedRoute, setSelectedRoute] = useState('/users');
   const navigate = useNavigate();
-  const apiRootUrl = process.env.REACT_APP_CODESPACE_NAME
-    ? `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/`
-    : 'http://localhost:8000/api/';
+  const apiRootUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/`;
 
   const handleNavigate = (event) => {
     event.preventDefault();

@@ -1,13 +1,5 @@
 import { useEffect, useState } from 'react';
 
-const getBaseApiUrl = () => {
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-  if (codespaceName) {
-    return `https://${codespaceName}-8000.app.github.dev/api`;
-  }
-  return 'http://localhost:8000/api';
-};
-
 const normalizeResponse = (payload) => {
   if (Array.isArray(payload)) {
     return payload;
@@ -27,7 +19,7 @@ function Leaderboard() {
   const [error, setError] = useState('');
   const [reloadToken, setReloadToken] = useState(0);
 
-  const endpoint = `${getBaseApiUrl()}/leaderboard/`;
+  const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`;
 
   useEffect(() => {
     const fetchLeaderboard = async () => {

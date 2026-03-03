@@ -1,13 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const getBaseApiUrl = () => {
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-  if (codespaceName) {
-    return `https://${codespaceName}-8000.app.github.dev/api`;
-  }
-  return 'http://localhost:8000/api';
-};
-
 const normalizeResponse = (payload) => {
   if (Array.isArray(payload)) {
     return payload;
@@ -26,7 +18,7 @@ function Workouts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const endpoint = `${getBaseApiUrl()}/workouts/`;
+  const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`;
 
   const fetchWorkouts = useCallback(async () => {
     setLoading(true);
