@@ -1,0 +1,104 @@
+.app-shell {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f4f8ff 0%, #e9f3ff 100%);
+  color: #1f2a44;
+}
+
+.octofit-nav {
+  background: linear-gradient(90deg, #1f3a8a 0%, #2563eb 100%);
+  border-bottom: 4px solid #38bdf8;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 8px;
+  background-color: #ffffff;
+  padding: 4px;
+}
+
+.brand-text {
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.octofit-nav .nav-link {
+  color: #dbeafe;
+  font-weight: 600;
+}
+
+.octofit-nav .nav-link:hover,
+.octofit-nav .nav-link.active {
+  color: #ffffff;
+}
+
+.page-title,
+.section-title,
+.card-title {
+  color: #1e40af;
+}
+
+.page-subtitle {
+  color: #334155;
+}
+
+.overview-link {
+  color: #0f766e;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.overview-link:hover {
+  color: #115e59;
+  text-decoration: underline;
+}
+
+.octofit-card {
+  border: 1px solid #bfdbfe;
+  box-shadow: 0 10px 24px rgba(30, 64, 175, 0.12);
+}
+
+.octofit-table {
+  border-color: #93c5fd;
+  background-color: #ffffff;
+}
+
+.octofit-table thead th {
+  background-color: #dbeafe;
+  color: #1e3a8a;
+}
+
+.octofit-table tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  border-color: #1d4ed8;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+  border-color: #1e40af;
+}
+
+.btn-success {
+  background-color: #0f766e;
+  border-color: #0f766e;
+}
+
+.btn-success:hover {
+  background-color: #0d5d57;
+  border-color: #0d5d57;
+}
+
+.octofit-modal .modal-header {
+  background-color: #eff6ff;
+  color: #1e3a8a;
+}
+
+.octofit-modal .modal-footer {
+  background-color: #f8fbff;
+}
